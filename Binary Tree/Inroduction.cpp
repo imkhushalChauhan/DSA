@@ -55,11 +55,13 @@ void inorderT(Tree* root){
 int main(){
     cout<<"Creating tree"<<endl;
     Tree* root=createTree();
-    cout<<"Tree PostOrder"<<endl;
-    postorderT(root);
-    cout<<"Tree PreOrder"<<endl;
-    preorderT(root);
     cout<<"Tree InOrder"<<endl;
     inorderT(root);
+    cout<<endl;
+    cout<<"Tree PostOrder"<<endl;
+    postorderT(root);
+    cout<<endl;
+    cout<<"Tree PreOrder"<<endl;
+    preorderT(root);
     return 0;
 }

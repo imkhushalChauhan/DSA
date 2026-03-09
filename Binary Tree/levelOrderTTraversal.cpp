@@ -52,40 +52,32 @@ void inorderT(Tree* root){
     }
 }
 
-void printLeftView1(Tree* root, int level, int &maxi){
+void levelOrderTraversal(Tree* root){
     if(root==NULL) return;
-    if(level>maxi){
-        cout<<root->val<<" ";
-        maxi=level;
+    queue<Tree*> q;
+    q.push(root);
+    q.push(NULL);
+
+    while(!q.empty()){
+        Tree* node = q.front();
+        q.pop();
+        if(node==NULL){
+            cout<<endl;
+            q.push(NULL);
+            continue;
+        }
+        cout<<node->val<<" ";
+        if(node->left!=NULL) q.push(node->left);
+        if(node->right!=NULL) q.push(node->right);
     }
-    printLeftView1(root->left,level+1,maxi);
-    printLeftView1(root->right,level+1,maxi);
-}
-
-void printLeftView2(Tree* root){
-    // if(root==NULL) return;
-
-    // cout<<root->val<< " ";
-    // if(root->left!=NULL) printLeftView2(root->left);
-    // else if(root->right!= NULL) printLeftView2(root->right);
-
-    if(root==NULL) return;
-    if(root->left==NULL && root->right==NULL) return;
-    cout<<root->val<< " ";
-    if(root->left!=NULL) printLeftView2(root->left);
-    else if(root->right!= NULL) printLeftView2(root->right);
 }
 
 int main(){
-    int m=0;
     cout<<"Creating tree"<<endl;
     Tree* root=createTree();
     cout<<"Tree PostOrder"<<endl;
     postorderT(root);
     cout<<endl;
-    printLeftView1(root,1,m);
-    cout<<endl;
-    printLeftView2(root);
-    
+    levelOrderTraversal(root);
     return 0;
 }

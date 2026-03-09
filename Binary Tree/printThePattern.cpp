@@ -52,40 +52,52 @@ void inorderT(Tree* root){
     }
 }
 
-void printLeftView1(Tree* root, int level, int &maxi){
-    if(root==NULL) return;
-    if(level>maxi){
-        cout<<root->val<<" ";
-        maxi=level;
-    }
-    printLeftView1(root->left,level+1,maxi);
-    printLeftView1(root->right,level+1,maxi);
-}
-
-void printLeftView2(Tree* root){
-    // if(root==NULL) return;
-
-    // cout<<root->val<< " ";
-    // if(root->left!=NULL) printLeftView2(root->left);
-    // else if(root->right!= NULL) printLeftView2(root->right);
-
+//Left View except leaf nodes
+void printLeftView(Tree* root){
     if(root==NULL) return;
     if(root->left==NULL && root->right==NULL) return;
     cout<<root->val<< " ";
-    if(root->left!=NULL) printLeftView2(root->left);
-    else if(root->right!= NULL) printLeftView2(root->right);
+    if(root->left!=NULL) printLeftView(root->left);
+    else if(root->right!= NULL) printLeftView(root->right);
+}
+
+// Right View in reverse order and removing leaf nodes
+void printRightView(Tree* root){
+    if(root==NULL) return;
+    if(root->left==NULL && root->right==NULL) return;
+    if(root->right!=NULL) printRightView(root->right);
+    else if(root->left!= NULL) printRightView(root->left);
+    cout<<root->val<< " ";
+}
+
+
+//Print the leaf nodes
+void leafNode(Tree* root) {
+    if(root==NULL) return;
+
+    if(root->left==NULL && root->right==NULL) {
+        cout<<root->val<<" ";
+        return;
+    }
+    leafNode(root->left);
+    leafNode(root->right);
 }
 
 int main(){
-    int m=0;
     cout<<"Creating tree"<<endl;
     Tree* root=createTree();
     cout<<"Tree PostOrder"<<endl;
     postorderT(root);
     cout<<endl;
-    printLeftView1(root,1,m);
-    cout<<endl;
-    printLeftView2(root);
-    
+
+    //Left View
+    printLeftView(root);
+
+    //Leaf Nodes
+    leafNode(root);
+
+    //Right View
+    printRightView(root->right);
+     
     return 0;
 }

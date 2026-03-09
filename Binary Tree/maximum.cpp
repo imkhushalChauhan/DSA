@@ -52,40 +52,22 @@ void inorderT(Tree* root){
     }
 }
 
-void printLeftView1(Tree* root, int level, int &maxi){
-    if(root==NULL) return;
-    if(level>maxi){
-        cout<<root->val<<" ";
-        maxi=level;
+
+int maxi=INT_MIN;
+void maximum(Tree* root){
+        if(root==NULL) return;
+        if(maxi<root->val) maxi=root->val;
+        maximum(root->left);
+        maximum(root->right);
     }
-    printLeftView1(root->left,level+1,maxi);
-    printLeftView1(root->right,level+1,maxi);
-}
-
-void printLeftView2(Tree* root){
-    // if(root==NULL) return;
-
-    // cout<<root->val<< " ";
-    // if(root->left!=NULL) printLeftView2(root->left);
-    // else if(root->right!= NULL) printLeftView2(root->right);
-
-    if(root==NULL) return;
-    if(root->left==NULL && root->right==NULL) return;
-    cout<<root->val<< " ";
-    if(root->left!=NULL) printLeftView2(root->left);
-    else if(root->right!= NULL) printLeftView2(root->right);
-}
 
 int main(){
-    int m=0;
     cout<<"Creating tree"<<endl;
     Tree* root=createTree();
     cout<<"Tree PostOrder"<<endl;
     postorderT(root);
     cout<<endl;
-    printLeftView1(root,1,m);
-    cout<<endl;
-    printLeftView2(root);
-    
+    maximum(root);
+    cout<<"Maximum of tree"<<maxi<<endl;
     return 0;
 }

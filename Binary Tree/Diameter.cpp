@@ -51,41 +51,24 @@ void inorderT(Tree* root){
         inorderT(root->right);
     }
 }
+int dia=0;
+int diameter(Tree* root){
+    if(root==NULL) return 0; 
 
-void printLeftView1(Tree* root, int level, int &maxi){
-    if(root==NULL) return;
-    if(level>maxi){
-        cout<<root->val<<" ";
-        maxi=level;
-    }
-    printLeftView1(root->left,level+1,maxi);
-    printLeftView1(root->right,level+1,maxi);
-}
+    int lh=diameter(root->left);
+    int rh=diameter(root->right);
 
-void printLeftView2(Tree* root){
-    // if(root==NULL) return;
-
-    // cout<<root->val<< " ";
-    // if(root->left!=NULL) printLeftView2(root->left);
-    // else if(root->right!= NULL) printLeftView2(root->right);
-
-    if(root==NULL) return;
-    if(root->left==NULL && root->right==NULL) return;
-    cout<<root->val<< " ";
-    if(root->left!=NULL) printLeftView2(root->left);
-    else if(root->right!= NULL) printLeftView2(root->right);
+    dia=max(dia,lh+rh+1);
+    return 1+max(lh,rh);
 }
 
 int main(){
-    int m=0;
     cout<<"Creating tree"<<endl;
     Tree* root=createTree();
-    cout<<"Tree PostOrder"<<endl;
-    postorderT(root);
+    cout<<"Tree InOrder"<<endl;
+    inorderT(root);
     cout<<endl;
-    printLeftView1(root,1,m);
-    cout<<endl;
-    printLeftView2(root);
+    cout<<diameter(root);
     
     return 0;
 }
