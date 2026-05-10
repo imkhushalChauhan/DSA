@@ -1,6 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//question-https://leetcode.com/problems/rotting-oranges/description/
+
+//we dont need to maked visited array, and we should focus on why we initialzed time=-1;
+
 int orangesRotting(vector<vector<int>>& grid) {
         int m=grid.size();
         int n=grid[0].size();

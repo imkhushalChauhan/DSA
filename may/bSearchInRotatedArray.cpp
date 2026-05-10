@@ -1,6 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//question-  https://leetcode.com/problems/search-in-rotated-sorted-array/ 
+//we have to focus on where we are getting sorted ascending array not descending
+
     int search(vector<int>& nums, int target) {
         int low=0;
         int high=nums.size()-1;
