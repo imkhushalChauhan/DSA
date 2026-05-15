@@ -3,6 +3,11 @@ using namespace std;
 
 //question-https://leetcode.com/problems/subsets/
 //try it with bitmask
+//similar-Subsets II
+// Generalized Abbreviation
+// Letter Case Permutation
+// Find Array Given Subset Sums
+// Count Number of Maximum Bitwise-OR Subsets
 
 void solve(int idx, vector<int>& nums, vector<int>& ds,vector<vector<int>>& ans, int& n){
         if(idx==n){
